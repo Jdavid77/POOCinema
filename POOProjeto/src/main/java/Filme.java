@@ -12,6 +12,8 @@ public class Filme {
     private String nome;
     private String genero;
     private String realizador;
+    private Ator Ator_principal;
+    private Ator Atriz_principal;
     private ArrayList<Ator> atores;
     
     public Filme(String nome, String genero, String realizador){
@@ -19,5 +21,20 @@ public class Filme {
         this.genero = genero;
         this.realizador = realizador;
         atores = new ArrayList<Ator>();
+    }    
+    public void addAtorSecundario(Ator secundario){
+        atores.add(secundario);
+    }
+    public ArrayList<Ator> getAtores(){
+        return atores;
+    }
+    
+    public String toString(){
+        String info;
+        info = "Nome: " + nome + "\n";
+        info = info + "Genero: " + genero + "\n";
+        info = info + "Realizador: "+ realizador + "\n";
+        return info;
+        
     }
 }

@@ -15,16 +15,13 @@ public class Ator {
     public Ator(String nome, int anos){
         this.nome = nome;
         this.anoscarreira = anos;
-    }
-    
+    }    
     public void setNome(String nome){
         this.nome = nome;
-    }
-    
+    }    
     public void setAnosCarreira(int anos){
         this.anoscarreira = anos;
-    }
-    
+    }    
     public String getNome(){
         return nome;
         

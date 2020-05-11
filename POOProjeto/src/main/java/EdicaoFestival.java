@@ -19,5 +19,26 @@ public class EdicaoFestival {
         this.numeroedicao = numeroedicao;
         filmes = new ArrayList<Filme>();
     }
+    public String toString(){
+        String info;
+        info = "Edição: "+numeroedicao+"\n";
+        info = info + "Ano: "+ano+"\n";
+        info = info + "Filmes :\n";
+        for (int i =0; i< filmes.size();i++){
+            info = info +"\n"+ filmes.get(i).toString()+"\n";
+        }
+        return info;
+    }
+    public void addFilme(Filme f){
+        filmes.add(f);
+    }
+    public int getNumEdicao(){
+        return numeroedicao;
+    }
+    public ArrayList<Filme> getFilme(){
+        return filmes;
+    }
+    
+   
     
 }
