@@ -12,21 +12,21 @@ public class Filme {
     private String nome;
     private String genero;
     private String realizador;
-    private Ator Ator_principal;
-    private Ator Atriz_principal;
+    //private Ator Ator_principal;
+    //private Ator Atriz_principal;
     private ArrayList<Ator> atores;
     
-    public Filme(String nome, String genero, String realizador,String Ator_P, String Atriz_P){
+    public Filme(String nome, String genero, String realizador){
         Ator Ator_Principal = new Ator();
         Ator Atriz_Principal = new Ator();
         this.nome = nome;
         this.genero = genero;
         this.realizador = realizador;
-        this.Ator_principal = Ator_Principal;
-        this.Atriz_principal= Atriz_Principal;
-        this.Ator_principal.setNome(Ator_P);
-        this.Atriz_principal.setNome(Atriz_P);
         atores = new ArrayList<Ator>();
+        this.atores.add(0,Ator_Principal);
+        this.atores.add(1,Atriz_Principal);
+        
+        
     }    
     
     public String getNome(){
@@ -34,27 +34,36 @@ public class Filme {
     }
     
     
-    public void addAtorSecundario(Ator secundario){
-        atores.add(secundario);
+    public void addNovoAtor(Ator a){
+        
+        if ((a.getPrincipal()==true) && (a.getGenero()==true)){            
+            atores.set(0,a);       
+        }else if (a.getPrincipal()== true && (a.getGenero()==false)){
+            
+            atores.set(1,a);
+        }else
+            atores.add(a);
+            
     }
-    public ArrayList<Ator> getAtoresSecundários(){
+    
+    public ArrayList<Ator> getAtores(){
         return atores;
     }
     
-    public Ator getAtorPrincipal(){
+    /*public Ator getAtorPrincipal(){
         return Ator_principal;
     }
     
     public Ator getAtrizPrincipal(){
         return Atriz_principal;
-    }
+    }*/
     
     public String toString(){
         String info;
         info = "Nome: " + nome + " || Genero: " + genero +" || Realizador: "+ realizador + "\n";
-        info = info + "Ator Principal: "+Ator_principal.getNome() +"\n" + "Atriz Principal: "+Atriz_principal.getNome()+"\n";
+        info = info + "Ator Principal: "+atores.get(0).getNome() +"\n" + "Atriz Principal: "+atores.get(1).getNome()+"\n";
         info = info + "Atores Secundários: ";
-        for(int i = 0; i< atores.size(); i++){
+        for(int i = 2; i< atores.size(); i++){
             info = info + atores.get(i).getNome() + " ";
         }
         info = info + "\n";
