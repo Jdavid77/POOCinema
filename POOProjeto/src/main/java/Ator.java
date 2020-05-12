@@ -10,21 +10,41 @@
  */
 public class Ator {
     private String nome;
+    private String sobrenome;
     private int anoscarreira;
     
-    public Ator(String nome, int anos){
+    public Ator(String nome,String sobrenome, int anos){
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.anoscarreira = anos;
     }    
+    
+    public Ator(){
+        nome = "";
+        sobrenome = "";
+        anoscarreira = 0;
+    }
+    
+    
     public void setNome(String nome){
         this.nome = nome;
     }    
+    
+    public void setSobrenome(String sobrenome){
+        this.sobrenome = sobrenome;
+    }
+    
     public void setAnosCarreira(int anos){
         this.anoscarreira = anos;
     }    
+    
     public String getNome(){
-        return nome;
+        return nome ;
         
+    }
+    
+    public String getSobrenome(){
+        return sobrenome;
     }
     
     public int getAnosCarreira(){

@@ -35,7 +35,7 @@ public class EdicaoFestival {
     public int getNumEdicao(){
         return numeroedicao;
     }
-    public ArrayList<Filme> getFilme(){
+    public ArrayList<Filme> getFilmes(){
         return filmes;
     }
     
