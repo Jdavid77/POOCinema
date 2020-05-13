@@ -1,10 +1,6 @@
 import java.util.Scanner;
+import java.util.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -20,7 +16,8 @@ public class Main {
     public static void main(String[] args) {
         
         Festival principal = new Festival();
-        int opcao,num_edicao,opcao2,indice;
+        int opcao = 0;
+        int num_edicao,opcao2,ator_p;
         int selecionada = 0;
         String nome_filme, nome_ator;
         Scanner scan = new Scanner(System.in, "cp1252");
@@ -30,12 +27,22 @@ public class Main {
         
         
         do{
-        
+            boolean ok = false;
+            while (!ok){
             System.out.println("### FESTIVAL DE CINEMA ###");
             System.out.println("O que pretende fazer ?");
             System.out.println("(1) Criar Nova Edição" );
             System.out.println("(2) Edição Existente");
-            opcao = scan.nextInt();
+            try{
+                opcao = scan.nextInt();
+                ok = true;
+            }
+            catch (InputMismatchException e){
+                System.out.println ("Input inválido!");
+                scan.nextLine();
+            }
+            }
+            
             switch(opcao){
                 case 1:
                     principal.addEdicao(novaEdicao());
@@ -47,11 +54,9 @@ public class Main {
                     num_edicao = scan.nextInt();
                     for(int i =0;i<principal.getEdicoes().size();i++){
                         if(principal.getEdicoes().get(i).getNumEdicao()==num_edicao){
-                           existe_edicao=true;
-                            
+                           existe_edicao=true;                            
                         }else
-                            selecionada++;
-                        
+                            selecionada++;                        
                     }if(!existe_edicao){
                         System.out.println("Essa Edição não existe!");   
                         break;
@@ -70,33 +75,14 @@ public class Main {
                                     System.out.println("Filme Adicionado!");
                                     break;
                                 case 2:
-                                    System.out.println("Qual o nome do filme ?");
-                                    nome_filme = scan.next();
-                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
-                                        if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getNome().equals(nome_filme)){
-                                            principal.getEdicoes().get(selecionada).getFilmes().get(i).addNovoAtor(novoAtor(nome_filme));
-                                            System.out.println("Ator adicionado");
-                                            
-                                        }
-                                    }
+                                    principal.getEdicoes().get(selecionada).getAtores().add(criaAtor());
                                     break;
                                 case 3:
                                     System.out.println(principal.getEdicoes().get(selecionada));
                                     break;
                                 case 4:
-                                    System.out.println("Qual o nome do ator ?");                                    
-                                    nome_ator = scan.next();
-                                    System.out.println("Qual o sobrenome do ator?");
-                                    nome_ator = nome_ator + " "+ scan.next();
-                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
-                                        
-                                        for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size();j++){
-                                            
-                                            if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).getNome().equals(nome_ator)){
-                                                System.out.println(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).atorFilmes());
-                                                
-                                            }
-                                        }
+                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){                                        
+                                        System.out.println(principal.getEdicoes().get(selecionada).getAtores().get(i).atorFilmes());                                            
                                     }
                                     break;
                                 case 5:
@@ -104,26 +90,31 @@ public class Main {
                                     nome_ator = scan.next();
                                     System.out.println("Qual o sobrenome do ator?");
                                     nome_ator = nome_ator + " "+ scan.next();
-                                    for(int i = 0; i<principal.getEdicoes().get(selecionada).getFilmes().size(); i++){// I indice Filme
-                                        for(int j = 0; j<principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size(); j++){//J indice ator
-                                            if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).getNome().equals(nome_ator)){
-                                                System.out.println("Qual o nome do filme ?");
-                                                nome_filme = scan.next();
-                                                principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).setFilme(nome_filme);
-                                                
-                                                for(int g=0; g<principal.getEdicoes().get(selecionada).getFilmes().size();g++){
+                                    System.out.println("A qual filme pretende adicionar?");
+                                    nome_filme = scan.next();
+                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){                                        
+                                        if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nome_ator)) {
+                                            for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){
+                                                if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){
+                                                    System.out.println("Que papel tem o ator no filme? ");
+                                                    System.out.println("(1) Principal || (2) Secundário");
+                                                    ator_p = scan.nextInt();
+                                                    if (ator_p==1)
+                                                        principal.getEdicoes().get(selecionada).getFilmes().get(j).addNovoAtor(principal.getEdicoes().get(selecionada).getAtores().get(i), true);
+                                                    else
+                                                        principal.getEdicoes().get(selecionada).getFilmes().get(j).addNovoAtor(principal.getEdicoes().get(selecionada).getAtores().get(i), false);
+                                                    principal.getEdicoes().get(selecionada).getAtores().get(i).setFilme(nome_filme);
+                                                    System.out.println("Ator adicionado");
                                                     
-                                                    if(principal.getEdicoes().get(selecionada).getFilmes().get(g).getNome().equals(nome_filme)){
-                                                        principal.getEdicoes().get(selecionada).getFilmes().get(g).addNovoAtor(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j));
-                                                        System.out.println("Ator adicionado");
-                                                        break;
-                                                    }
-                                                        
-                                    }
-                                            }
+                                            
                                         }
-                                        
                                     }
+                                        }                                            
+                                    }
+                                    
+                                    
+                                        
+                                    
                                     break;
                                     
                                 case 10:
@@ -135,8 +126,7 @@ public class Main {
                             }
                         }while(running == true);
                     }
-                case 3:
-                    System.out.println(principal);
+                
                 default:
                     System.out.println("Opção inválida");       
                     break;
@@ -147,12 +137,32 @@ public class Main {
         
     
     public static EdicaoFestival novaEdicao(){
-        int ano, edicao;
+        int ano = 0;
+        int edicao = 0;
+        boolean ok = false;
+        boolean ok2 = false;
         Scanner scan = new Scanner(System.in, "cp1252");
+        while(!ok){
         System.out.println("Qual o ano? \n");
-        ano = scan.nextInt();
-        System.out.println("Qual é a edição? \n");
-        edicao = scan.nextInt();
+        try{
+            ano = scan.nextInt();
+            ok = true;}
+        catch(InputMismatchException e){
+            System.out.println("Input inválido");
+            scan.nextLine();
+        }
+        }
+        while (!ok2){
+            System.out.println("Qual é a edição? \n");
+            try{
+                edicao = scan.nextInt();
+                ok2 = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Input inválido");
+                scan.nextLine();
+            }
+        }
         EdicaoFestival edFest = new EdicaoFestival(ano,edicao);  
        
         return edFest;
@@ -166,18 +176,17 @@ public class Main {
         System.out.println("Qual o genero do filme?");
         genero = scan.next();
         System.out.println("Qual é o realizador do filme?");
-        realizador = scan.next();
-        
+        realizador = scan.next();        
         Filme novo = new Filme(nome, genero, realizador);
         return novo;
     }
-    public static Ator novoAtor(String nomefilme){
-        String nome, sobrenome;
-        int principal,anoscarreira,genero;        
-        Scanner scan = new Scanner(System.in, "cp1252");            
-        System.out.println("Qual o primeiro nome do ator/?");
+    public static Ator criaAtor(){
+        String nome;
+        int principal,anoscarreira,genero; 
+        Scanner scan = new Scanner(System.in, "cp1252");
+        System.out.println("Qual é o primeiro nome?");
         nome = scan.next();
-        System.out.println("Qual o sobrenome do ator?");
+        System.out.println("Qual é o sobrenome?");
         nome = nome + " "+ scan.next();
         System.out.println("Quantos anos de carreira este ator possui?");
         anoscarreira = scan.nextInt();
@@ -189,16 +198,16 @@ public class Main {
             novoator.setGenero(true);                 
         else if (genero ==0)            
             novoator.setGenero(false);        
-        System.out.println("Que papel tem o ator no filme? ");
+        /*System.out.println("Que papel tem o ator no filme? ");
         System.out.println("(1) Principal || (2) Secundário");
         principal = scan.nextInt();
         if(principal ==1)
             novoator.setPrincipal(true);
         else
-            novoator.setPrincipal(false);
-        novoator.setFilme(nomefilme);
+            novoator.setPrincipal(false);*/
         return novoator;
     }
+    
    
 }
 

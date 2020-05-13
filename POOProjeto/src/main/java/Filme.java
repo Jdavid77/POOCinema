@@ -34,11 +34,11 @@ public class Filme {
     }
     
     
-    public void addNovoAtor(Ator a){
+    public void addNovoAtor(Ator a,boolean principal){
         
-        if ((a.getPrincipal()==true) && (a.getGenero()==true)){            
+        if ((principal==true) && (a.getGenero()==true)){            
             atores.set(0,a);       
-        }else if (a.getPrincipal()== true && (a.getGenero()==false)){
+        }else if ((principal== true) && (a.getGenero()==false)){
             
             atores.set(1,a);
         }else

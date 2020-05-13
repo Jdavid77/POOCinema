@@ -13,11 +13,13 @@ public class EdicaoFestival {
     private int ano;
     private int numeroedicao;
     private ArrayList<Filme> filmes;
+    private ArrayList<Ator> atores;
     
     public EdicaoFestival(int ano, int numeroedicao){
         this.ano = ano;
         this.numeroedicao = numeroedicao;
         filmes = new ArrayList<Filme>();
+        atores = new ArrayList<Ator>();
     }
     public String toString(){
         String info;
@@ -37,6 +39,12 @@ public class EdicaoFestival {
     }
     public ArrayList<Filme> getFilmes(){
         return filmes;
+    }
+    public void addAtor(Ator a){
+        atores.add(a);
+    }
+    public ArrayList<Ator> getAtores(){
+        return atores;    
     }
     
    

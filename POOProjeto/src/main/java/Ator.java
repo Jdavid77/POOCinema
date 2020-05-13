@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,7 +15,7 @@ public class Ator {
     private String nome;
    
     private int anoscarreira;
-    private boolean principal;
+    //private boolean principal;
     private boolean genero;
     private String filmes [] = new String[2];
     
@@ -20,7 +23,7 @@ public class Ator {
         this.nome = nome;
         
         this.anoscarreira = anos;
-        this.principal = principal;
+        //this.principal = principal;
         this.genero = genero;
     }    
     
@@ -28,7 +31,7 @@ public class Ator {
         nome = "";
         
         anoscarreira = 0;
-        principal = false;
+        //principal = false;
         genero = true;
     }
     
@@ -42,9 +45,9 @@ public class Ator {
     public void setAnosCarreira(int anos){
         this.anoscarreira = anos;
     }
-    public void setPrincipal(boolean p){
+   /* public void setPrincipal(boolean p){
         this.principal = p;
-    }
+    }*/
     public void setGenero(boolean h){
         this.genero = h;
     }
@@ -67,9 +70,9 @@ public class Ator {
     public int getAnosCarreira(){
         return anoscarreira;
     }
-    public boolean getPrincipal(){
+    /*public boolean getPrincipal(){
         return principal;
-    }
+    }*/
     public boolean getGenero(){
         return genero;
     }    
@@ -78,10 +81,10 @@ public class Ator {
         String info;
         info = "Nome: " + nome + "\n";
         info = info + "Anos carreira: " + anoscarreira + "\n";
-        if(principal)
+        /*if(principal)
             info = info + "Principal \n";
         else
-            info = info + "Secundário \n";
+            info = info + "Secundário \n";*/
         return info;
         
     }
@@ -91,6 +94,7 @@ public class Ator {
         s = s + "Filmes: "+ filmes[0] +" ; " + filmes [1]+"\n";
         return s;
     }
+    
     
     
     
