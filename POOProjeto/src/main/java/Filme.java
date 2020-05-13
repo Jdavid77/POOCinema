@@ -12,8 +12,6 @@ public class Filme {
     private String nome;
     private String genero;
     private String realizador;
-    //private Ator Ator_principal;
-    //private Ator Atriz_principal;
     private ArrayList<Ator> atores;
     
     public Filme(String nome, String genero, String realizador){
@@ -35,28 +33,21 @@ public class Filme {
     
     
     public void addNovoAtor(Ator a,boolean principal){
-        
-        if ((principal==true) && (a.getGenero()==true)){            
-            atores.set(0,a);       
-        }else if ((principal== true) && (a.getGenero()==false)){
-            
-            atores.set(1,a);
-        }else
-            atores.add(a);
-            
+        if(a.getFilmes()[1]==null){
+            if ((principal==true) && (a.getGenero()==true)){            
+                atores.set(0,a);       
+            }else if ((principal== true) && (a.getGenero()==false)){            
+                atores.set(1,a);
+            }else
+                atores.add(a);
+            System.out.println("Ator adicionado");
+        }    
     }
     
     public ArrayList<Ator> getAtores(){
         return atores;
-    }
+    }   
     
-    /*public Ator getAtorPrincipal(){
-        return Ator_principal;
-    }
-    
-    public Ator getAtrizPrincipal(){
-        return Atriz_principal;
-    }*/
     
     public String toString(){
         String info;

@@ -27,6 +27,7 @@ public class Ator {
         this.genero = genero;
     }    
     
+    
     public Ator(){
         nome = "";
         
@@ -75,7 +76,10 @@ public class Ator {
     }*/
     public boolean getGenero(){
         return genero;
-    }    
+    }
+    public String[] getFilmes(){
+        return filmes;
+    }
     
     public String toString(){
         String info;
