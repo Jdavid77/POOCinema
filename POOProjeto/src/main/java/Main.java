@@ -103,6 +103,9 @@ public class Main {
                             System.out.println("(4) Listar Atores participantes");
                             System.out.println("(5) Adcionar ator existente a um filme existente ");
                             System.out.println("(6) Categorias que irão ser premiadas");
+                            System.out.println("(7) Criar painel de pertios");
+                            System.out.println("(8) Atribuir pontuação a filme");
+                            System.out.println("(9) Atribuir pontuação a Ator");
                             System.out.println("(10) Sair da aplicação!!");
                             try{
                                 opcao2 = scan.nextInt();
@@ -170,6 +173,7 @@ public class Main {
                                     break;
                                     }
                                 case 5:
+                                    boolean ator_existe = false;
                                     System.out.println("Qual o nome do ator ?");
                                     nome_ator = scan.next();
                                     System.out.println("Qual o sobrenome do ator?");
@@ -178,6 +182,7 @@ public class Main {
                                     nome_filme = scan.next();
                                     for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){                                        
                                         if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nome_ator)) {
+                                            ator_existe = true;
                                             for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){
                                                 if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){
                                                     System.out.println("Que papel tem o ator no filme? ");
@@ -188,13 +193,12 @@ public class Main {
                                                     else
                                                         principal.getEdicoes().get(selecionada).getFilmes().get(j).addNovoAtor(principal.getEdicoes().get(selecionada).getAtores().get(i), false);
                                                     principal.getEdicoes().get(selecionada).getAtores().get(i).setFilme(nome_filme);
-                                                    System.out.println("Ator adicionado");
-                                                    
-                                            
                                         }
                                     }
-                                        }                                            
-                                    }
+                            }                                            
+                        }
+                                    if(ator_existe==false)
+                                        System.out.println("Esse ator não existe!");
                 
                                     break;
                                 case 6:
@@ -202,6 +206,46 @@ public class Main {
                                         System.out.println(categoria + "\n");
                                 }
                                     break;
+                                case 7:
+                                    int num_peritos=0;
+                                    String nomep;
+                                    System.out.println("Quantos peritos terá o painel?");
+                                    num_peritos = scan.nextInt();
+                                    for(int i=0;i<num_peritos;i++){                                       
+                                        System.out.println("Qual o nome do perito?");
+                                        nomep = scan.next();
+                                        System.out.println("Qual o sobrenome do perito?");
+                                        nomep = nomep + " " + scan.next();
+                                        Peritos p = new Peritos(nomep);
+                                        principal.getEdicoes().get(selecionada).addPerito(p);
+                                        System.out.println("Perito "+(i+1)+ " adicionado");
+                                    }
+                                    
+                                    break;
+                                case 8:
+                                    System.out.println("Qual o nome do filme?");
+                                    nome_filme = scan.next();
+                                    for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){
+                                                if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){
+                                                    principal.getEdicoes().get(selecionada).getFilmes().get(j).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                    System.out.println(principal.getEdicoes().get(selecionada).getFilmes().get(j).MostraP());
+                                                }
+                                    }
+                                    break;
+                                case 9:
+                                    System.out.println("Qual o nome do ator ?");
+                                    nome_ator = scan.next();
+                                    System.out.println("Qual o sobrenome do ator?");
+                                    nome_ator = nome_ator + " "+ scan.next();
+                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){
+                                        if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nome_ator)) {
+                                            principal.getEdicoes().get(selecionada).getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                            System.out.println(principal.getEdicoes().get(selecionada).getAtores().get(i).MostraP());
+                                        }
+                                        
+                                    }
+                                    break;
+                                    
 
                                 case 10:
                                     System.exit(0);
@@ -263,14 +307,17 @@ public class Main {
             novoator.setGenero(true);                 
         else if (genero ==0)            
             novoator.setGenero(false);        
-        /*System.out.println("Que papel tem o ator no filme? ");
-        System.out.println("(1) Principal || (2) Secundário");
-        principal = scan.nextInt();
-        if(principal ==1)
-            novoator.setPrincipal(true);
-        else
-            novoator.setPrincipal(false);*/
         return novoator;
+    }
+    
+    public static double Pontuacao(EdicaoFestival f){
+        int pontos=0;
+        double media;
+        for(int i = 0; i< f.getPeritos().size();i++){
+            pontos = pontos + f.getPeritos().get(i).geraPontos();
+        }
+        media = pontos/f.getPeritos().size();
+        return media;
     }
     
    

@@ -14,12 +14,14 @@ public class EdicaoFestival {
     private int numeroedicao;
     private ArrayList<Filme> filmes;
     private ArrayList<Ator> atores;
+    private ArrayList<Peritos> peritos;
     
     public EdicaoFestival(int ano, int numeroedicao){
         this.ano = ano;
         this.numeroedicao = numeroedicao;
         filmes = new ArrayList<Filme>();
         atores = new ArrayList<Ator>();
+        peritos = new ArrayList<Peritos>();
     }
     public String toString(){
         String info;
@@ -43,8 +45,14 @@ public class EdicaoFestival {
     public void addAtor(Ator a){
         atores.add(a);
     }
+    public void addPerito(Peritos p){        
+        peritos.add(p);
+    }
     public ArrayList<Ator> getAtores(){
         return atores;    
+    }
+    public ArrayList<Peritos> getPeritos(){
+        return peritos;
     }
     
    
