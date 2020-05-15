@@ -30,7 +30,7 @@ public class Peritos {
     }
     public String toString(){
         String info ;
-        info = "nome: " + nome ;
+        info = "Perito: " + nome ;
         return info;
     }
     

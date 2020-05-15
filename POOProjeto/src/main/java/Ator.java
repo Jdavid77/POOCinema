@@ -12,24 +12,27 @@ import java.util.Scanner;
  * @author jdavi
  */
 public class Ator {
-    private String nome;
-   
+    private String nome;   
     private int anoscarreira;
     //private boolean principal;
     private boolean genero;
-    private String filmes [] = new String[2];
+    private String filmes [];
     double pontos;
     
-    public Ator(String nome, int anos,boolean principal,boolean genero){
+    public Ator(String nome, int anos,boolean genero){
         this.nome = nome;
         
         this.anoscarreira = anos;
         //this.principal = principal;
         this.genero = genero;
+        this.filmes = new String[2];
     }    
     
     public void setPontos(double pontuacao){
         this.pontos = pontuacao;
+    }
+    public double getPontos(){
+        return pontos;
     }
     
     public Ator(){

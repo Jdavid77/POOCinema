@@ -37,17 +37,38 @@ public class Filme {
     }
     
     
-    public void addNovoAtor(Ator a,boolean principal){
-        if(a.getFilmes()[1]==null){
-            if ((principal==true) && (a.getGenero()==true)){            
-                atores.set(0,a);       
-            }else if ((principal== true) && (a.getGenero()==false)){            
-                atores.set(1,a);
-            }else
-                atores.add(a);
+    public boolean addNovoAtor(Ator a,boolean principal){
+        if(principal){
+            if(a.getGenero()==true){
+                if(atores.get(0).getNome().equals("")){
+                    atores.set(0,a);
+                    System.out.println("Ator adicionado");
+                    return true;
+                }
+                else
+                    System.out.println("Já existe ator principal no filme!");                
+            }else if(a.getGenero()==false){
+                if(atores.get(1).getNome().equals("")){
+                    atores.set(1,a);
+                    System.out.println("Ariz adicionada");
+                    return true;
+                }
+                else
+                    System.out.println("Já existe atriz principal no filme!");   
+                
+            }
+        }else if(!principal){
+            atores.add(a);
             System.out.println("Ator adicionado");
-        }    
-    }
+            return true;
+        }
+        return false;
+    }        
+       
+       
+            
+        
+    
     
     public ArrayList<Ator> getAtores(){
         return atores;

@@ -15,6 +15,8 @@ public class EdicaoFestival {
     private ArrayList<Filme> filmes;
     private ArrayList<Ator> atores;
     private ArrayList<Peritos> peritos;
+    private CategoriasAtor MAtores;
+    private CategoriasAtor MAtrizes;
     
     public EdicaoFestival(int ano, int numeroedicao){
         this.ano = ano;
@@ -22,6 +24,8 @@ public class EdicaoFestival {
         filmes = new ArrayList<Filme>();
         atores = new ArrayList<Ator>();
         peritos = new ArrayList<Peritos>();
+        MAtores = new CategoriasAtor("Melhor Ator");
+        MAtrizes = new CategoriasAtor("Melhor Atriz");
     }
     public String toString(){
         String info;
@@ -42,6 +46,14 @@ public class EdicaoFestival {
     public ArrayList<Filme> getFilmes(){
         return filmes;
     }
+    
+    public CategoriasAtor getMAtores(){
+        return MAtores;
+    }
+    public CategoriasAtor getMAtrizes(){
+        return MAtrizes;
+    }
+    
     public void addAtor(Ator a){
         atores.add(a);
     }
