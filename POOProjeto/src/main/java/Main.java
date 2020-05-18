@@ -26,6 +26,7 @@ public class Main {
         
         Scanner scan = new Scanner(System.in, "cp1252");
         boolean running = true;
+        boolean running2 = false;
         
         
         EdicaoFestival teste= new EdicaoFestival(2000,1);
@@ -198,6 +199,7 @@ public class Main {
                                     break;
                                     }
                                 case 5:
+                                    boolean participa_filme=false;
                                     boolean adicionado=false;
                                     boolean ator_existe = false;
                                     System.out.println("Qual o nome do ator ?");
@@ -213,8 +215,16 @@ public class Main {
                                                 System.out.println("O Ator já participa em 2 filmes!");
                                                 break;
                                             }
+                                            
                                             for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){
                                                 if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){
+                                                    for(int k =0;k< principal.getEdicoes().get(selecionada).getFilmes().get(j).getAtores().size();k++){
+                                                        if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getAtores().get(k).getNome().equals(nome_ator)){
+                                                           System.out.println("O ator já participa no filme!");
+                                                           participa_filme=true;
+                                                        }
+                                                }
+                                                    if(!participa_filme){
                                                     System.out.println("Que papel tem o ator no filme? ");
                                                     System.out.println("(1) Principal || (2) Secundário");
                                                     ator_p = scan.nextInt();
@@ -230,6 +240,7 @@ public class Main {
                                                             principal.getEdicoes().get(selecionada).getAtores().get(i).setFilme(nome_filme);
                                                             
                                                         }
+                                                    }
                                                         
                                                     
                                                     
@@ -262,19 +273,120 @@ public class Main {
                                     
                                     break;
                                 case 8:
-                                    if(principal.getEdicoes().get(selecionada).getAtores().size() <4){
-                                        System.out.println("É preciso pelo menos 4 atores para selecionar");
-                                        break;
-                                    }
+                                    
+                                    int opcao3;
+                                    
+                                    
+                                    //Verificação do numero de atores
+                                    
+                                    
                                     int num_atores = 0;
                                     int num_atrizes=0;
-                                    int opcao3;
-                                    for(int i =0;i<principal.getEdicoes().get(selecionada).getAtores().size();i++){
-                                        if(principal.getEdicoes().get(selecionada).getAtores().get(i).getGenero())
-                                            num_atores=num_atores +1;
-                                        else
-                                            num_atrizes = num_atrizes+1;
+                                    
+                                    
+                                    for(int i =0;i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
+                                        if(!principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(0).getNome().equals(""))
+                                            num_atores = num_atores + 1;    
+                                        
+                                        if(!principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(1).getNome().equals(""))
+                                            num_atrizes = num_atrizes + 1; 
+                                        
+                                        for(int j = 2; j < principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size(); j++){
+                                            if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).getGenero()== true)
+                                                 num_atores=num_atores +1;
+                                            else if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).getGenero()== false);
+                                                 num_atrizes = num_atrizes+1;
+                                        }
                                     }
+                                    
+                                    // Verificação do numero de atores principais
+                                    
+                                    int atoresprincipais = 0;
+                                    int principais = 0;
+                                    int pos_filme = 0;
+                                    boolean quebrou;
+                                    boolean atprincipais;
+                                    while(atoresprincipais < principal.getEdicoes().get(selecionada).getFilmes().size()){
+                                        for (int i = 0;i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
+                                            atprincipais = false;
+                                            quebrou = false;
+                                            if(!principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(0).getNome().equals("")){
+                                                atprincipais = true;
+                                                pos_filme = i;
+                                            }
+                                            if(atprincipais){
+                                                
+                                                for(int j = 0; j < principal.getEdicoes().get(selecionada).getPrincipais().size(); j++){
+                                                    if(principal.getEdicoes().get(selecionada).getPrincipais().get(j).getNome().equals(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme).getAtores().get(0).getNome())){
+                                                       quebrou = true;
+                                                    }
+                                                }
+                                                if(quebrou == true){
+                                                    atoresprincipais++;
+                                                }
+                                                else{
+                                                    principal.getEdicoes().get(selecionada).getPrincipais().add(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme).getAtores().get(0));
+                                                    principais++;
+                                                    atoresprincipais++; 
+                                                }
+                                            }
+ 
+                                            else{
+                                                
+                                                atoresprincipais++;
+                                            }
+                                                
+                                        }
+                                    }
+                                    
+                                    
+                                    // Verificação do numero de atrizes principais 
+                                    
+                                    int atrizesprincipais = 0;
+                                    int principaisf = 0;
+                                    int pos_filme2 = 0;
+                                    boolean quebrou2 = false;
+                                    boolean atzprincipais;
+                                    while(atrizesprincipais < principal.getEdicoes().get(selecionada).getFilmes().size()){
+                                        for (int i = 0;i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
+                                            atzprincipais = false;
+                                            quebrou2 = false;
+                                            if(!principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(1).getNome().equals("")){
+                                                atzprincipais = true;
+                                                pos_filme2 = i;
+                                            }
+                                            if(atzprincipais){
+                                                
+                                                for(int j = 0; j < principal.getEdicoes().get(selecionada).getAtzPrincipais().size(); j++){
+                                                    if(principal.getEdicoes().get(selecionada).getAtzPrincipais().get(j).getNome().equals(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme).getAtores().get(1).getNome())){
+                                                       quebrou2 = true;
+                                                    }
+                                                }
+                                                if(quebrou2 == true){
+                                                    atrizesprincipais++;
+                                                }
+                                                else{
+                                                    principal.getEdicoes().get(selecionada).getAtzPrincipais().add(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme).getAtores().get(1));
+                                                    principaisf++;
+                                                    atrizesprincipais++; 
+                                                }
+                                            }
+ 
+                                            else{
+                                                
+                                                atrizesprincipais++;
+                                            }
+                                                
+                                        }
+                                    }
+                                    
+                                    //Verificação de Atores secundários
+                                    
+                                    // Tá no case 9
+                                    
+                                    
+                                            
+                                    do{
                                     System.out.println("Deseja selecionar os participantes para qual categoria?: ");
                                     System.out.println("(1) Melhor ator ");
                                     System.out.println("(2) Melhor atriz");
@@ -373,14 +485,62 @@ public class Main {
                                                 System.out.println("Atriz inexistente ou não participa em nenhum filme!");
                                             }
                                             
-                                            break;
                                             
-                                    }
-                                    }
+                                            
+                                            }
+                                            break;
+                                        case 3:
+                                            if (principais < 4){
+                                                System.out.println("Atores principais insuficientes");
+                                                break;
+                                            }
+                                        case 4:
+                                            running2 = false;
+                                            break;
+                                        }
+                                    }while(running2 = true);
                                     break;
                                             
                                 case 9:
-                                    System.out.println(principal.getEdicoes().get(selecionada).getMAtores().toString());//Só para ver se adicionava slet
+                                    
+                                    //Meti no case 9 para um gajo conseguir ver qnts ele tá a colocar lá
+                                    //Se um gajo fizer só uma vez tá slet, mas se fizermos mais do que uma já dá merda , ele conta cenas a mais
+                                    
+                                    int num_secundários = principal.getEdicoes().get(selecionada).getSecundarios().size();// Meti assim pq se já tiver o gajo já começa nesse valor, se for a zero e fizermos a segunda vez como ele já adicionou o pessoal n vai contar com esses
+                                    int pos_filme3 = 0;
+                                    int pos_ator2 = 0;
+                                    boolean secundário = false;
+                                    boolean quebrou3 = false;
+                                    for (int i = 0;i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
+                                        if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size()>2){
+                                        for(int j = 2; j < principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size(); j++){                                            
+                                            secundário = true;
+                                            pos_filme3 = i;
+                                            pos_ator2 = j;                         
+                                            if(secundário){// O stress está a partir daqui nestas verificações mas não percebo onde Xd
+                                                
+                                                for (int k = 0; k < principal.getEdicoes().get(selecionada).getSecundarios().size(); k++){
+                                                    if (principal.getEdicoes().get(selecionada).getSecundarios().get(k).getNome().equals(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme3).getAtores().get(pos_ator2).getNome())){
+                                                        quebrou3 = true;
+                                                    }
+                                                }
+                                                if(quebrou3){
+                                                    break;
+                                                }
+                                                else{
+                                                    principal.getEdicoes().get(selecionada).getSecundarios().add(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme3).getAtores().get(pos_ator2));
+                                                    num_secundários++;
+                                                }
+                                            }
+                                            else{
+                                                break;
+                                            }
+                                        }
+                                        
+                                    }
+                                    }
+                                    System.out.println(num_secundários);
+                                    
                                     break;
                                     
 

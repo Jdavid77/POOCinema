@@ -40,7 +40,13 @@ public class Ator {
         
         anoscarreira = 0;
         //principal = false;
-        genero = true;
+        this.genero = true;
+    }
+    
+    public Ator(boolean f){
+        nome = "";
+        anoscarreira = 0;
+        this.genero = f;
     }
     
     

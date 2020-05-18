@@ -18,7 +18,7 @@ public class Filme {
     
     public Filme(String nome, String genero, String realizador){
         Ator Ator_Principal = new Ator();
-        Ator Atriz_Principal = new Ator();
+        Ator Atriz_Principal = new Ator(false);
         this.nome = nome;
         this.genero = genero;
         this.realizador = realizador;

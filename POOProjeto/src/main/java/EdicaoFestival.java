@@ -15,6 +15,12 @@ public class EdicaoFestival {
     private ArrayList<Filme> filmes;
     private ArrayList<Ator> atores;
     private ArrayList<Peritos> peritos;
+    
+    // apenas para efeito de verificações
+    private ArrayList<Ator> principais;
+    private ArrayList<Ator> atzprincipais;
+    private ArrayList<Ator> secundários;
+    // 
     private CategoriasAtor MAtores;
     private CategoriasAtor MAtrizes;
     
@@ -26,6 +32,8 @@ public class EdicaoFestival {
         peritos = new ArrayList<Peritos>();
         MAtores = new CategoriasAtor("Melhor Ator");
         MAtrizes = new CategoriasAtor("Melhor Atriz");
+        principais = new ArrayList<Ator>();
+        secundários = new ArrayList<Ator>();
     }
     public String toString(){
         String info;
@@ -47,6 +55,16 @@ public class EdicaoFestival {
         return filmes;
     }
     
+    public ArrayList<Ator> getPrincipais(){
+        return principais;
+    }
+    public ArrayList <Ator> getAtzPrincipais(){
+        return atzprincipais;
+    }
+    
+    public ArrayList<Ator> getSecundarios(){
+        return secundários;
+    }
     public CategoriasAtor getMAtores(){
         return MAtores;
     }
