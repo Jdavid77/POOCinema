@@ -15,7 +15,17 @@ public class EdicaoFestival {
     private ArrayList<Filme> filmes;
     private ArrayList<Ator> atores;
     private ArrayList<Peritos> peritos;
-    private MelhorAtor MA;
+    
+    // apenas para efeito de atribuição de prémios
+    private ArrayList<Ator> principais;
+    private ArrayList<Ator> atzprincipais;
+    private ArrayList<Ator> secundários;
+    private ArrayList <Filme> verificafilmes;
+    private ArrayList <String> realizadores;
+    private ArrayList <Ator> carreira;
+    // 
+    private CategoriasAtor MAtores;
+    private CategoriasAtor MAtrizes;
     
     public EdicaoFestival(int ano, int numeroedicao){
         this.ano = ano;
@@ -23,7 +33,10 @@ public class EdicaoFestival {
         filmes = new ArrayList<Filme>();
         atores = new ArrayList<Ator>();
         peritos = new ArrayList<Peritos>();
-        MA = new MelhorAtor();
+        MAtores = new CategoriasAtor("Melhor Ator");
+        MAtrizes = new CategoriasAtor("Melhor Atriz");
+        principais = new ArrayList<Ator>();
+        secundários = new ArrayList<Ator>();
     }
     public String toString(){
         String info;
@@ -45,8 +58,34 @@ public class EdicaoFestival {
         return filmes;
     }
     
-    public MelhorAtor getMA(){
-        return MA;
+    public ArrayList<Ator> getPrincipais(){
+        return principais;
+    }
+    public ArrayList <Ator> getAtzPrincipais(){
+        return atzprincipais;
+    }
+    
+    public ArrayList<Ator> getSecundarios(){
+        return secundários;
+    }
+    
+    public ArrayList<Filme> getVerificaFilmes(){
+        return verificafilmes;
+    }
+    
+    public ArrayList<String> getRealizadores(){
+        return realizadores;
+    }
+    
+    public ArrayList<Ator> getCarreira(){
+        return carreira;
+    }
+    
+    public CategoriasAtor getMAtores(){
+        return MAtores;
+    }
+    public CategoriasAtor getMAtrizes(){
+        return MAtrizes;
     }
     
     public void addAtor(Ator a){
