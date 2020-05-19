@@ -13,8 +13,8 @@ public class Filme {
     private String genero;
     private String realizador;
     private ArrayList<Ator> atores;
-    double pontos;
-    int numero_premios;
+    private double pontos;
+    
     
     public Filme(String nome, String genero, String realizador){
         Ator Ator_Principal = new Ator();
@@ -25,8 +25,8 @@ public class Filme {
         atores = new ArrayList<Ator>();
         this.atores.add(0,Ator_Principal);
         this.atores.add(1,Atriz_Principal);
-        this.pontos = 0;
-        this.numero_premios = 0;
+        pontos = 0;
+        
     }    
     
     public String getNome(){
@@ -34,6 +34,10 @@ public class Filme {
     }
     public void setPontos(double pontuacao){
         this.pontos = pontuacao;
+    }
+    
+    public double getPontos(){
+        return pontos;
     }
     
     public Ator getAtorPrincipal(){

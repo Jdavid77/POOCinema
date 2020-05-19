@@ -17,7 +17,7 @@ public class Ator {
     //private boolean principal;
     private boolean genero;
     private String filmes [];
-    double pontos;
+    private double pontos;
     
     public Ator(String nome, int anos,boolean genero){
         this.nome = nome;
@@ -26,7 +26,10 @@ public class Ator {
         //this.principal = principal;
         this.genero = genero;
         this.filmes = new String[2];
+        pontos = 0;
     }    
+    
+    
     
     public void setPontos(double pontuacao){
         this.pontos = pontuacao;
@@ -41,12 +44,14 @@ public class Ator {
         anoscarreira = 0;
         //principal = false;
         this.genero = true;
+        pontos = 0;
     }
     
     public Ator(boolean f){
         nome = "";
         anoscarreira = 0;
         this.genero = f;
+        pontos = 0;
     }
     
     
