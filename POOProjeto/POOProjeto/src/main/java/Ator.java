@@ -26,10 +26,7 @@ public class Ator {
         //this.principal = principal;
         this.genero = genero;
         this.filmes = new String[2];
-        pontos = 0;
     }    
-    
-    
     
     public void setPontos(double pontuacao){
         this.pontos = pontuacao;
@@ -43,15 +40,7 @@ public class Ator {
         
         anoscarreira = 0;
         //principal = false;
-        this.genero = true;
-        pontos = 0;
-    }
-    
-    public Ator(boolean f){
-        nome = "";
-        anoscarreira = 0;
-        this.genero = f;
-        pontos = 0;
+        genero = true;
     }
     
     

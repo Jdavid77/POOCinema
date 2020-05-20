@@ -11,22 +11,25 @@ import java.util.ArrayList;
 public class Filme {
     private String nome;
     private String genero;
-    private String realizador;
     private ArrayList<Ator> atores;
     private double pontos;
-    
+    private int numero_premios;
+    private String realizador;
+    private double pontos_realizador;
     
     public Filme(String nome, String genero, String realizador){
         Ator Ator_Principal = new Ator();
-        Ator Atriz_Principal = new Ator(false);
+        Ator Atriz_Principal = new Ator();
         this.nome = nome;
         this.genero = genero;
         this.realizador = realizador;
         atores = new ArrayList<Ator>();
         this.atores.add(0,Ator_Principal);
         this.atores.add(1,Atriz_Principal);
+        pontos_realizador = 0;
         pontos = 0;
-        
+        numero_premios = 0;
+
     }    
     
     public String getNome(){
@@ -37,19 +40,15 @@ public class Filme {
     }
     
     public double getPontos(){
-        return pontos;
-    }
-    
-    public Ator getAtorPrincipal(){
-        return atores.get(0);
-    }
-    
-    public Ator getAtrizPrincipal(){
-        return atores.get(1);
+       return pontos;
     }
     
     public String getRealizador(){
         return realizador;
+    }
+    
+    public void setPontosRealiador(double pontuacao){
+        this.pontos_realizador = pontuacao;
     }
     
     public boolean addNovoAtor(Ator a,boolean principal){
