@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 /**
  *
  * @author jdavi
@@ -27,6 +28,7 @@ public class EdicaoFestival {
     private ArrayList<String> realizadores;
     private ArrayList<Ator> carreira;
     // 
+    private LinkedHashMap<String,Double> map_realizadores; 
     private CategoriasAtor MAtores;
     private CategoriasAtor MAtrizes;
     private CategoriasAtor MPrincipal;
@@ -57,6 +59,7 @@ public class EdicaoFestival {
         verificafilmes = new ArrayList<Filme>();
         realizadores = new ArrayList<String>();
         carreira = new ArrayList<Ator>();
+        map_realizadores = new LinkedHashMap<String,Double>();
         
         //
     }
@@ -145,7 +148,9 @@ public class EdicaoFestival {
     public ArrayList<Peritos> getPeritos(){
         return peritos;
     }
-    
+    public LinkedHashMap<String,Double> getMap(){
+        return map_realizadores;
+    }
    
     
 }

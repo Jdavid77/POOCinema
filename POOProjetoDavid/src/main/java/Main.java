@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.*;
+import java.util.LinkedHashMap;
 
 
 /**
@@ -15,6 +16,7 @@ public class Main {
      
     public static void main(String[] args) {
         
+       
         Festival principal = new Festival();
         int opcao = 0;
         int num_edicao = 0;
@@ -24,9 +26,12 @@ public class Main {
         String nome_filme, nome_ator;
         String[] categorias = {"Melhor Ator" , "Melhor Atriz","Melhor Ator/Atriz Principal","Melhor Ator Secundário", "Melhor Filme", "Melhor realizador","Prémio Carreira"};
         
+        
         Scanner scan = new Scanner(System.in, "cp1252");
         boolean running = true;
         boolean running2 = false;
+        boolean running3 = false;
+        
         
         
         EdicaoFestival teste= new EdicaoFestival(2000,1);
@@ -37,16 +42,26 @@ public class Main {
         principal.getEdicoes().get(0).addFilme(TESTE1);
         Filme TESTE2 = new Filme("Teste2","Y","S");
         principal.getEdicoes().get(0).addFilme(TESTE2);
+        Filme TESTE3 = new Filme("Teste3","G","S");
+        principal.getEdicoes().get(0).addFilme(TESTE3);
+        Filme TESTE4 = new Filme("Teste4","U","T");
+        principal.getEdicoes().get(0).addFilme(TESTE4);
+        
         Ator Ateste = new Ator("João V",2,true);
         Ator Ateste2 = new Ator("Miguel V",2,true);
         Ator Ateste3 = new Ator("Dinarte V",2,true);
         Ator Ateste4 = new Ator("Filipe V",2,true);
         Ator Ateste5 = new Ator("Ana W",2,false);
-        Ator Ateste6= new Ator("Joana R",2,false);
-        Ator Ateste7 = new Ator("Maria E",2,false);
-        Ator Ateste8 = new Ator("Sara Y",2,false);
-        Ator Ateste9 = new Ator("Marco2"
-                + " V",2,true);
+        Ator Ateste6= new Ator("Joana R",21,false);
+        Ator Ateste7 = new Ator("Maria E",21,false);
+        Ator Ateste8 = new Ator("Sara Y",21,false);
+        Ator Ateste9 = new Ator("Marco V",21,true);
+        Ator Ateste10 = new Ator("Johny W",21,true);
+        Ator Ateste11 = new Ator("Big V",21,true);
+        Ator Ateste12 = new Ator("Luana P",21,false);
+        Ator Ateste13 = new Ator("Manuela V",2,false);
+        Ator Ateste14 = new Ator("Pedro V",2,true);
+        
         principal.getEdicoes().get(0).addAtor(Ateste);
         principal.getEdicoes().get(0).addAtor(Ateste2);
         principal.getEdicoes().get(0).addAtor(Ateste3);
@@ -57,11 +72,31 @@ public class Main {
         principal.getEdicoes().get(0).addAtor(Ateste8);
         principal.getEdicoes().get(0).addAtor(Ateste9);
         
-        
-        
-        
-        
-        
+        principal.getEdicoes().get(0).getFilmes().get(0).addNovoAtor(Ateste, true); // João 0 prin
+        principal.getEdicoes().get(0).getFilmes().get(1).addNovoAtor(Ateste2, true);// Miguel 1 prin
+        principal.getEdicoes().get(0).getFilmes().get(2).addNovoAtor(Ateste3, true);// Dinarte 2 prin
+        principal.getEdicoes().get(0).getFilmes().get(0).addNovoAtor(Ateste4, false); // Filipe 0
+        principal.getEdicoes().get(0).getFilmes().get(0).addNovoAtor(Ateste5, true); // Ana 0 prin
+        principal.getEdicoes().get(0).getFilmes().get(1).addNovoAtor(Ateste6, true); // Joana 1 prin
+        principal.getEdicoes().get(0).getFilmes().get(2).addNovoAtor(Ateste7, true); // Maria 2 prin
+        principal.getEdicoes().get(0).getFilmes().get(1).addNovoAtor(Ateste8, false); // Sara 1
+        principal.getEdicoes().get(0).getFilmes().get(2).addNovoAtor(Ateste9, false); // Marco 2
+        principal.getEdicoes().get(0).getFilmes().get(0).addNovoAtor(Ateste9, false); // Marco 0
+        principal.getEdicoes().get(0).getFilmes().get(0).addNovoAtor(Ateste8, false); // Sara 0
+        principal.getEdicoes().get(0).getFilmes().get(1).addNovoAtor(Ateste, false); // João 1
+        principal.getEdicoes().get(0).getFilmes().get(1).addNovoAtor(Ateste5, false); // Ana 1
+        principal.getEdicoes().get(0).getFilmes().get(2).addNovoAtor(Ateste3, false); // Dinarte 2
+        principal.getEdicoes().get(0).getFilmes().get(2).addNovoAtor(Ateste6, false); // Joana 2
+        principal.getEdicoes().get(0).getFilmes().get(3).addNovoAtor(Ateste2, true); // Miguel 3 prin
+        principal.getEdicoes().get(0).getFilmes().get(3).addNovoAtor(Ateste7, true); // Maria 3 prin
+        principal.getEdicoes().get(0).getFilmes().get(3).addNovoAtor(Ateste10, false); // Johny 3
+        principal.getEdicoes().get(0).getFilmes().get(3).addNovoAtor(Ateste12, false); // Luana 3
+        principal.getEdicoes().get(0).getFilmes().get(3).addNovoAtor(Ateste11, false); // Big 3
+        principal.getEdicoes().get(0).getFilmes().get(4).addNovoAtor(Ateste10,true); // Johny 4 prin
+        principal.getEdicoes().get(0).getFilmes().get(4).addNovoAtor(Ateste12,true); // Luana 4 prin
+        principal.getEdicoes().get(0).getFilmes().get(4).addNovoAtor(Ateste11,false); // Big 4
+        principal.getEdicoes().get(0).getFilmes().get(4).addNovoAtor(Ateste13,false); // Manuela 4
+        principal.getEdicoes().get(0).getFilmes().get(4).addNovoAtor(Ateste14,false); // Pedro 4
         do{
             boolean ok = false;
             while (!ok){
@@ -129,7 +164,7 @@ public class Main {
                             System.out.println("(4) Listar Atores participantes");
                             System.out.println("(5) Adcionar ator existente a um filme existente ");
                             System.out.println("(6) Categorias que irão ser premiadas");
-                            System.out.println("(7) Criar painel de pertios");
+                            System.out.println("(7) Criar painel de peritos");
                             System.out.println("(8) Informação sobre atribuição de prémios");
                             System.out.println("(9) Selecionar atores para categorias");
                             System.out.println("(10) Atribuir pontuação a Ator");
@@ -216,33 +251,33 @@ public class Main {
                                     nome_ator = nome_ator + " "+ scan.next();
                                     System.out.println("A qual filme pretende adicionar?");
                                     nome_filme = scan.next();
-                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){                                        
-                                        if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nome_ator)) {
-                                            ator_existe = true;
-                                            if(principal.getEdicoes().get(selecionada).getAtores().get(i).getFilmes()[1]!=null){
-                                                System.out.println("O Ator já participa em 2 filmes!");
+                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){                         //Percorre a lista de Atores               
+                                        if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nome_ator)) {        //Verifica se o ator com indice i tem o nome inserido
+                                            ator_existe = true;                                                                             //Caso tenha o valor de ator_existe muda para true
+                                            if(principal.getEdicoes().get(selecionada).getAtores().get(i).getFilmes()[1]!=null){            //Verifica se o ator participa em 2 filmes
+                                                System.out.println("O Ator já participa em 2 filmes!");                                     // Caso participe aparece mensagem de erro e acontece um break
                                                 break;
                                             }
                                             
-                                            for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){
-                                                if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){
-                                                    for(int k =0;k< principal.getEdicoes().get(selecionada).getFilmes().get(j).getAtores().size();k++){
-                                                        if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getAtores().get(k).getNome().equals(nome_ator)){
-                                                           System.out.println("O ator já participa no filme!");
+                                            for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){             //Percorre a lista de filmes
+                                                if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){ //Verifica se o filme com indice j é o filme pretendido
+                                                    for(int k =0;k< principal.getEdicoes().get(selecionada).getFilmes().get(j).getAtores().size();k++){ //Se for o filme pretendido percorre a lista de atores desse filme
+                                                        if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getAtores().get(k).getNome().equals(nome_ator)){ // Para verificar se o ator já participa no mesmo
+                                                           System.out.println("O ator já participa no filme!");                         // Caso o ator já participe aparece mensagem de erro
                                                            participa_filme=true;
                                                         }
                                                 }
-                                                    if(!participa_filme){
+                                                    if(!participa_filme){                                               //Se o ator não participar no filme continuamos com a adição ao mesmo
                                                     System.out.println("Que papel tem o ator no filme? ");
                                                     System.out.println("(1) Principal || (2) Secundário");
-                                                    ator_p = scan.nextInt();
-                                                    if (ator_p==1){
+                                                    ator_p = scan.nextInt();                                        //Pergunta se o ator é principal ou secundário no filme
+                                                    if (ator_p==1){                                                 //Se o ator tiver papel principal no filme é adicionado chamando a função addNovoAtor com valor true
                                                         adicionado = principal.getEdicoes().get(selecionada).getFilmes().get(j).addNovoAtor(principal.getEdicoes().get(selecionada).getAtores().get(i), true);
-                                                        if(adicionado){                                                            
-                                                            principal.getEdicoes().get(selecionada).getAtores().get(i).setFilme(nome_filme);
+                                                        if(adicionado){                 // A função addNovoAtor tem como retorno um bool, se for verdadeiro, significa que o ator foi adicionado corretamente ao filme                                           
+                                                            principal.getEdicoes().get(selecionada).getAtores().get(i).setFilme(nome_filme); // Como o ator foi bem adicionado é colocado o nome do filme na lista de filmes que o ator participa
                                                         }
                                                     }                                                        
-                                                    else{
+                                                    else{                                                               // Caso tenha papel secundário é adicionado chamando a função addNovoAtor com valor false
                                                         adicionado = principal.getEdicoes().get(selecionada).getFilmes().get(j).addNovoAtor(principal.getEdicoes().get(selecionada).getAtores().get(i), false);
                                                         if(adicionado)
                                                             principal.getEdicoes().get(selecionada).getAtores().get(i).setFilme(nome_filme);
@@ -392,26 +427,6 @@ public class Main {
                                     System.out.println("Numero de atores: " + num_atores);
                                     System.out.println("Numero de atrizes: " + num_atrizes);
                                     
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    /*for(int i =0;i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
-                                        if(!principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(0).getNome().equals(""))
-                                            num_atores = num_atores + 1;    
-                                        
-                                        if(!principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(1).getNome().equals(""))
-                                            num_atrizes = num_atrizes + 1; 
-                                        
-                                        for(int j = 2; j < principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size(); j++){
-                                            if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).getGenero()== true)
-                                                 num_atores=num_atores +1;
-                                            else if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().get(j).getGenero()== false);
-                                                 num_atrizes = num_atrizes+1;
-                                        }
-                                    }
-                                    */
                                     // Verificação do numero de atores principais
                                     
                                     int atoresprincipais = 0;
@@ -502,9 +517,10 @@ public class Main {
                                     boolean secundário = false;
                                     boolean quebrou3 = false;
                                     for (int i = 0;i<principal.getEdicoes().get(selecionada).getFilmes().size();i++){
-                                        quebrou3 = false;
+                                        
                                         if(principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size()>2){
                                         for(int j = 2; j < principal.getEdicoes().get(selecionada).getFilmes().get(i).getAtores().size(); j++){                                            
+                                            quebrou3 = false;
                                             secundário = true;
                                             pos_filme3 = i;
                                             pos_ator2 = j;                         
@@ -516,7 +532,7 @@ public class Main {
                                                     }
                                                 }
                                                 if(quebrou3){
-                                                    break;
+                                                    num_secundários += 0;
                                                 }
                                                 else{
                                                     principal.getEdicoes().get(selecionada).getSecundarios().add(principal.getEdicoes().get(selecionada).getFilmes().get(pos_filme3).getAtores().get(pos_ator2));
@@ -524,7 +540,7 @@ public class Main {
                                                 }
                                             }
                                             else{
-                                                break;
+                                                num_secundários += 0;
                                             }
                                         }
                                         
@@ -629,27 +645,7 @@ public class Main {
                                     }
                                     
                                     System.out.println("Numero de atores aptos para o premio Carreira: " + num_carreira);
-                                    
-                                   /* if(num_atores < 4 || num_atrizes < 4 || principais+principaisf < 4 || num_secundários < 4 || num_filmes < 4 || num_realizadores < 4 || num_carreira < 4){
-                                        System.out.println("Numero insuficiente de atores para começar atribuição de prémios!!");
-                                        num_atores = 0;
-                                        num_atrizes = 0;
-                                        principais = 0;
-                                        principaisf = 0;
-                                        num_secundários = 0;
-                                        num_filmes = 0;
-                                        num_realizadores = 0;
-                                        num_carreira = 0;
-                                        principal.getEdicoes().get(selecionada).getPrincipais().clear();
-                                        principal.getEdicoes().get(selecionada).getAtzPrincipais().clear();
-                                        principal.getEdicoes().get(selecionada).getSecundarios().clear();
-                                        principal.getEdicoes().get(selecionada).getVerificaFilmes().clear();
-                                        principal.getEdicoes().get(selecionada).getRealizadores().clear();
-                                        principal.getEdicoes().get(selecionada).getCarreira().clear();
-                                        break;
-                                    }*/
-                                   // else{
-                                            
+                                       
                                     do{
                                     System.out.println("Deseja selecionar os participantes para qual categoria?: ");
                                     System.out.println("(1) Melhor ator ");
@@ -659,7 +655,7 @@ public class Main {
                                     System.out.println("(5) Prémio Carreira");
                                     System.out.println("(6) Melhor filme");
                                     System.out.println("(7) Melhor Realizador");
-                                    
+                                    System.out.println("(8) Voltar ao menu principal");
                                     opcao3 = scan.nextInt();
                                     switch(opcao3){
                                         case 1:
@@ -706,58 +702,6 @@ public class Main {
                                             }
                                             break;
                                             
-                                                
-                                            
-                                            
-                                            
-                                            
-                                           /* 
-                                            int selecionados =0;
-                                            while(selecionados <4){
-                                            int pos_ator=0;
-                                            boolean homem = false;
-                                            boolean existeAtor = false;
-                                            boolean AtorMA = false;
-                                            String nomeator;
-                                            System.out.println("Qual o nome do ator");
-                                            nomeator = scan.next();
-                                            System.out.println("Qual o sobrenome do ator");
-                                            nomeator = nomeator + " " + scan.next();
-                                            for(int i =0;i<principal.getEdicoes().get(selecionada).getAtores().size();i++){ // amigo ja lhe tinha dito ontem, tem de percorrer o array dos filmes e nao o dos atores, isto aqui pode ser nomeada pessoal que ta apanhar mofo
-                                                if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nomeator)){
-                                                    existeAtor=true;
-                                                    pos_ator = i;
-                                                    if(principal.getEdicoes().get(selecionada).getAtores().get(i).getGenero())
-                                                        homem = true;
-                                                }
-                                            }
-                                            
-                                            if(existeAtor){
-                                                if(homem){
-                                                    for(int k = 0; k < principal.getEdicoes().get(selecionada).getMAtores().getAtores().size(); k++){
-                                                         if (principal.getEdicoes().get(selecionada).getMAtores().getAtores().get(k).getNome().equals(nomeator))
-                                                             AtorMA = true;
-                                                    }
-                                                    if(!AtorMA){
-                                                        principal.getEdicoes().get(selecionada).getMAtores().addAtor(principal.getEdicoes().get(selecionada).getAtores().get(pos_ator));
-                                                        selecionados = selecionados +1;
-                                                        System.out.println("Ator " +(selecionados)+" selecionado!");
-                                                    
-                                                    
-                                                    }else{
-                                                        System.out.println("Ator já participa nesta categoria!");
-                                                    }
-                                                
-                                                }
-                                                else {
-                                                    System.out.println("Ator do sexo feminino!");
-                                                }
-                                            }else{
-                                                System.out.println("Ator inexistente ou não participa em nenhum filme!");
-                                            }
-                                            }
-                                            */
-                                            
                                         case 2:
                                             
                                             if(principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().size() == 4)
@@ -780,7 +724,7 @@ public class Main {
                                                     selecionado = i;
                                                 }
                                             }
-                                            }
+                                            
                                             if(matriz){
                                                 for(int j = 0; j < principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().size(); j++){
                                                     if(principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().get(j).getNome().equals(principal.getEdicoes().get(selecionada).getFemininos().get(selecionado).getNome()))
@@ -800,50 +744,9 @@ public class Main {
                                                 System.out.println("Atriz inexistente ou não apto para esta categoria!!");
                                             }
                                             }
+                                            }
                                             break;
-                                            /*
-                                            int selecionadas = 0;
-                                            while(selecionadas <4){
-                                            int pos_atriz=0;
-                                            boolean mulher = false;
-                                            boolean existeAtriz = false;
-                                            boolean AtrizMA = false;
-                                            String nomeatriz;
-                                            System.out.println("Qual o nome da atriz");
-                                            nomeatriz = scan.next();
-                                            System.out.println("Qual o sobrenome da atriz");
-                                            nomeatriz = nomeatriz + " " + scan.next();
-                                            for(int i =0;i<principal.getEdicoes().get(selecionada).getAtores().size();i++){ // o mesmo de cima aplica-se aqui migo;
-                                                if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nomeatriz)){
-                                                    existeAtriz=true;
-                                                    pos_atriz=i;
-                                                    if(!principal.getEdicoes().get(selecionada).getAtores().get(i).getGenero())
-                                                        mulher = true;
-                                                }
-                                                
-                                            }
-                                            if (existeAtriz){
-                                                if(mulher){
-                                                    for(int k = 0; k < principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().size(); k++){
-                                                         if (principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().get(k).getNome().equals(nomeatriz))
-                                                             AtrizMA = true;
-                                                        }
-                                                    if(!AtrizMA){
-                                                        principal.getEdicoes().get(selecionada).getMAtores().addAtor(principal.getEdicoes().get(selecionada).getAtores().get(pos_atriz));
-                                                        selecionadas = selecionadas +1;
-                                                        System.out.println("Atriz " +(selecionadas)+" selecionada!");
-                                                    }
-                                                }else{
-                                                    System.out.println("Ator do sexo masculino!");
-                                                }
-                                            }else{
-                                                System.out.println("Atriz inexistente ou não participa em nenhum filme!");
-                                            }
                                             
-                                            
-                                            
-                                            }
-                                            break;*/
                                         case 3:
                                             int selecionados = 0;
                                             if(principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().size() == 4)
@@ -930,7 +833,7 @@ public class Main {
                                             
                                             if(msecundario){
                                                 for(int j = 0; j < principal.getEdicoes().get(selecionada).getMSecundario().getAtores().size(); j++){
-                                                    if(principal.getEdicoes().get(selecionada).getMSecundario().getAtores().get(j).getNome().equals(principal.getEdicoes().get(selecionada).getMasculinos().get(selecionado).getNome()))
+                                                    if(principal.getEdicoes().get(selecionada).getMSecundario().getAtores().get(j).getNome().equals(principal.getEdicoes().get(selecionada).getSecundarios().get(selecionado).getNome()))
                                                        msecundario2 = true;
                                                 }
                                                 if(msecundario2){
@@ -938,7 +841,7 @@ public class Main {
                                                     
                                                 }
                                                 else{
-                                                    principal.getEdicoes().get(selecionada).getMSecundario().getAtores().add(principal.getEdicoes().get(selecionada).getMasculinos().get(selecionado));
+                                                    principal.getEdicoes().get(selecionada).getMSecundario().getAtores().add(principal.getEdicoes().get(selecionada).getSecundarios().get(selecionado));
                                                     selecionados2++;
                                                 }
                                             }
@@ -947,7 +850,7 @@ public class Main {
                                             }
                                             }
                                             }
-                                            //running2 = false;
+                                         
                                             break;
                                         case 5:
                                             if(principal.getEdicoes().get(selecionada).getPCarreira().getAtores().size() == 4)
@@ -991,7 +894,7 @@ public class Main {
                                             }
                                             }
                                             }
-                                            //running2 = false;
+                                          
                                             break;
                                             
                                             
@@ -1039,30 +942,318 @@ public class Main {
                                                 
                                                 
                                              break;   
-                                            
                                         case 7:
-                                            // Bro aqui tem uma cena meia fdd, deixei pa fazeres porque nao sei como tas pensando em fazer a pontuação po realizador porque passei os realizadores para arraylist string e tipo pa dar pontuação a estes tristes é meio fdd.
-                                            // Na classe tens que adicionar as variaveis a cada pontuação
-                                            // Pa pontuação era fixe um MAP<Nomedogarino/filme> (checka a aula coleçoes II)
+                                            
+                                            if(principal.getEdicoes().get(selecionada).getMap().size() ==4){
+                                                System.out.println("Realizadores já previemente selecionados");
+                                                break;
+                                            }
+                                            String nome_realizador;
+                                            boolean rel = false;
+                                            int realizadores=0;
+                                            int pos_rel=0;
+                                            boolean rel_adi = false;
+                                            while(realizadores<4){
+                                                System.out.println("Qual o nome do realizador?");
+                                                nome_realizador = scan.next();  
+                                                for(int i =0;i< principal.getEdicoes().get(selecionada).getRealizadores().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getRealizadores().get(i).equals(nome_realizador)){
+                                                        rel = true;
+                                                        pos_rel = i;
+                                                    }
+                                                }
+                                                if(rel){
+                                                    for(int k =0; k< principal.getEdicoes().get(selecionada).getMap().size();k++){
+                                                        if(principal.getEdicoes().get(selecionada).getMap().containsKey(nome_realizador)){
+                                                            rel_adi = true;
+                                                        }
+                                                    }
+                                                    if(rel_adi)
+                                                        System.out.println("Realizador já selecionado");
+                                                    else{
+                                                        
+                                                        principal.getEdicoes().get(selecionada).getMap().put(nome_realizador,Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                        realizadores++;
+                                                    }
+                                                }else
+                                                    System.out.println("Realizador não existe ou não é apto para esta categoria!");
+                                                
+                                            }                                 
+                                            
+                                        case 8:
+                                            running2 = false;
+                                            
+                                            
                                             
                                         }
-                                    }while(running2 = true);
+                                    }while(running2 == true);
                                     //}
                                     break;
                                             
                                 case 10:
                                     
-                                    //Meti no case 9 para um gajo conseguir ver qnts ele tá a colocar lá
-                                    //Se um gajo fizer só uma vez tá slet, mas se fizermos mais do que uma já dá merda , ele conta cenas a mais
+                                    do{
+                                    int opcao4;
+                                    
+                                    System.out.println("Deseja atribuir a pontuação em qual categoria?: ");
+                                    System.out.println("(1) Melhor ator ");
+                                    System.out.println("(2) Melhor atriz");
+                                    System.out.println("(3) Melhor Ator/Atriz Principal");
+                                    System.out.println("(4) Melhor Ator/Atriz Secundário");
+                                    System.out.println("(5) Prémio Carreira");
+                                    System.out.println("(6) Melhor filme");
+                                    System.out.println("(7) Melhor Realizador");
+                                    System.out.println("(8) Voltar ao menu principal");
+                                    opcao4 = scan.nextInt();
+                                    switch(opcao4){
+                                        case 1:
+                                            boolean existe_concorrente = false;
+                                            int p;
+                                            double pontuacao;
+                                            int indice_concorrente=0;
+                                            String concorrente;
+                                            if(principal.getEdicoes().get(selecionada).getMAtores().getAtores().size()<4){
+                                                System.out.println("Selecione primeiro os participantes!");
+                                                break;
+                                            }
+                                            for(int i=0; i<principal.getEdicoes().get(selecionada).getMAtores().getAtores().size();i++){
+                                                principal.getEdicoes().get(selecionada).getMAtores().getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                System.out.println(principal.getEdicoes().get(selecionada).getMAtores().getAtores().get(i).MostraP());
+                                        }
+                                            System.out.println("Deseja alterar alguma pontuação?");
+                                            System.out.println("(1) Sim || (0) Não ");
+                                            p = scan.nextInt();
+                                            if(p == 1){
+                                                System.out.println("Qual o nome do concorrente que deseja alterar a pontuação?");
+                                                concorrente = scan.next();
+                                                System.out.println("Qual o sobrenome ?");
+                                                concorrente = concorrente +" "+ scan.next();
+                                                for(int i =0;i<principal.getEdicoes().get(selecionada).getMAtores().getAtores().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getMAtores().getAtores().get(i).getNome().equals(concorrente)){
+                                                        existe_concorrente = true;
+                                                        indice_concorrente = i;
+                                                    }
+                                                    if(existe_concorrente){
+                                                        System.out.println("Qual a nova pontuação?");
+                                                        pontuacao = scan.nextDouble();
+                                                        principal.getEdicoes().get(selecionada).getMAtores().getAtores().get(indice_concorrente).setPontos(pontuacao);
+                                                        System.out.println("Pontuação atualizada!");
+                                                    }
+                                                        
+                                                }
+                                                
+                                            }
+                                            
+                                        case 2:
+                                            boolean existe_concorrente1 = false;
+                                            int p1;
+                                            double pontuacao1;
+                                            int indice_concorrente1=0;
+                                            String concorrente1;
+                                            if(principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().size()<4){
+                                                System.out.println("Selecione primeiro os participantes!");
+                                                break;
+                                            }
+                                            for(int i=0; i<principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().size();i++){
+                                                principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                System.out.println(principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().get(i).MostraP());
+                                        }
+                                            System.out.println("Deseja alterar alguma pontuação?");
+                                            System.out.println("(1) Sim || (0) Não ");
+                                            p1 = scan.nextInt();
+                                            if(p1 == 1){
+                                                System.out.println("Qual o nome do concorrente que deseja alterar a pontuação?");
+                                                concorrente1 = scan.next();
+                                                System.out.println("Qual o sobrenome ?");
+                                                concorrente1 = concorrente1 +" "+ scan.next();
+                                                for(int i =0;i<principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().get(i).getNome().equals(concorrente1)){
+                                                        existe_concorrente1 = true;
+                                                        indice_concorrente1 = i;
+                                                    }
+                                                    if(existe_concorrente1){
+                                                        System.out.println("Qual a nova pontuação?");
+                                                        pontuacao1 = scan.nextDouble();
+                                                        principal.getEdicoes().get(selecionada).getMAtrizes().getAtores().get(indice_concorrente1).setPontos(pontuacao1);
+                                                        System.out.println("Pontuação atualizada!");
+                                                    }
+                                                        
+                                                }
+                                                
+                                            }
+                                        case 3:
+                                            boolean existe_concorrente2 = false;
+                                            int p2;
+                                            double pontuacao2;
+                                            int indice_concorrente2=0;
+                                            String concorrente2;
+                                            if(principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().size()<4){
+                                                System.out.println("Selecione primeiro os participantes!");
+                                                break;
+                                            }
+                                            for(int i=0; i<principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().size();i++){
+                                                principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                System.out.println(principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().get(i).MostraP());
+                                        }
+                                            System.out.println("Deseja alterar alguma pontuação?");
+                                            System.out.println("(1) Sim || (0) Não ");
+                                            p2 = scan.nextInt();
+                                            if(p2 == 1){
+                                                System.out.println("Qual o nome do concorrente que deseja alterar a pontuação?");
+                                                concorrente2 = scan.next();
+                                                System.out.println("Qual o sobrenome ?");
+                                                concorrente2 = concorrente2 +" "+ scan.next();
+                                                for(int i =0;i<principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().get(i).getNome().equals(concorrente2)){
+                                                        existe_concorrente2 = true;
+                                                        indice_concorrente2 = i;
+                                                    }
+                                                    if(existe_concorrente2){
+                                                        System.out.println("Qual a nova pontuação?");
+                                                        pontuacao2 = scan.nextDouble();
+                                                        principal.getEdicoes().get(selecionada).getMPrincipal().getAtores().get(indice_concorrente2).setPontos(pontuacao2);
+                                                        System.out.println("Pontuação atualizada!");
+                                                    }
+                                                        
+                                                }
+                                                
+                                            }
+                                        case 4:
+                                            boolean existe_concorrente3 = false;
+                                            int p3;
+                                            double pontuacao3;
+                                            int indice_concorrente3=0;
+                                            String concorrente3;
+                                            if(principal.getEdicoes().get(selecionada).getMSecundario().getAtores().size()<4){
+                                                System.out.println("Selecione primeiro os participantes!");
+                                                break;
+                                            }
+                                            for(int i=0; i<principal.getEdicoes().get(selecionada).getMSecundario().getAtores().size();i++){
+                                                principal.getEdicoes().get(selecionada).getMSecundario().getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                System.out.println(principal.getEdicoes().get(selecionada).getMSecundario().getAtores().get(i).MostraP());
+                                        }
+                                            System.out.println("Deseja alterar alguma pontuação?");
+                                            System.out.println("(1) Sim || (0) Não ");
+                                            p3 = scan.nextInt();
+                                            if(p3 == 1){
+                                                System.out.println("Qual o nome do concorrente que deseja alterar a pontuação?");
+                                                concorrente3 = scan.next();
+                                                System.out.println("Qual o sobrenome ?");
+                                                concorrente3 = concorrente3 +" "+ scan.next();
+                                                for(int i =0;i<principal.getEdicoes().get(selecionada).getMSecundario().getAtores().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getMSecundario().getAtores().get(i).getNome().equals(concorrente3)){
+                                                        existe_concorrente3 = true;
+                                                        indice_concorrente3 = i;
+                                                    }
+                                                    if(existe_concorrente3){
+                                                        System.out.println("Qual a nova pontuação?");
+                                                        pontuacao3 = scan.nextDouble();
+                                                        principal.getEdicoes().get(selecionada).getMSecundario().getAtores().get(indice_concorrente3).setPontos(pontuacao3);
+                                                        System.out.println("Pontuação atualizada!");
+                                                    }
+                                                        
+                                                }
+                                                
+                                            }
+                                        case 5:
+                                            boolean existe_concorrente4 = false;
+                                            int p4;
+                                            double pontuacao4;
+                                            int indice_concorrente4=0;
+                                            String concorrente4;
+                                            if(principal.getEdicoes().get(selecionada).getPCarreira().getAtores().size()<4){
+                                                System.out.println("Selecione primeiro os participantes!");
+                                                break;
+                                            }
+                                            for(int i=0; i<principal.getEdicoes().get(selecionada).getPCarreira().getAtores().size();i++){
+                                                principal.getEdicoes().get(selecionada).getPCarreira().getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                System.out.println(principal.getEdicoes().get(selecionada).getPCarreira().getAtores().get(i).MostraP());
+                                        }
+                                            System.out.println("Deseja alterar alguma pontuação?");
+                                            System.out.println("(1) Sim || (0) Não ");
+                                            p4 = scan.nextInt();
+                                            if(p4 == 1){
+                                                System.out.println("Qual o nome do concorrente que deseja alterar a pontuação?");
+                                                concorrente4 = scan.next();
+                                                System.out.println("Qual o sobrenome ?");
+                                                concorrente4 = concorrente4 +" "+ scan.next();
+                                                for(int i =0;i<principal.getEdicoes().get(selecionada).getPCarreira().getAtores().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getPCarreira().getAtores().get(i).getNome().equals(concorrente4)){
+                                                        existe_concorrente4 = true;
+                                                        indice_concorrente4 = i;
+                                                    }
+                                                    if(existe_concorrente4){
+                                                        System.out.println("Qual a nova pontuação?");
+                                                        pontuacao4 = scan.nextDouble();
+                                                        principal.getEdicoes().get(selecionada).getPCarreira().getAtores().get(indice_concorrente4).setPontos(pontuacao4);
+                                                        System.out.println("Pontuação atualizada!");
+                                                    }
+                                                        
+                                                }
+                                                
+                                            }
+                                        case 6:
+                                            boolean existe_filme = false;
+                                            int q;
+                                            double pontuacao6;
+                                            int indice_filme=0;
+                                            String nome_filme1;
+                                            if(principal.getEdicoes().get(selecionada).getMFilme().getFilmes().size()<4){
+                                                System.out.println("Selecione primeiro os participantes!");
+                                                break;
+                                            }
+                                            for(int i=0; i<principal.getEdicoes().get(selecionada).getMFilme().getFilmes().size();i++){
+                                                principal.getEdicoes().get(selecionada).getMFilme().getFilmes().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
+                                                System.out.println(principal.getEdicoes().get(selecionada).getMFilme().getFilmes().get(i).MostraP());
+                                        }
+                                            System.out.println("Deseja alterar alguma pontuação?");
+                                            System.out.println("(1) Sim || (0) Não ");
+                                            q = scan.nextInt();
+                                            if(q == 1){
+                                                System.out.println("Qual o nome do filme que deseja alterar a pontuação?");
+                                                nome_filme1 = scan.next();                                                
+                                                for(int i =0;i<principal.getEdicoes().get(selecionada).getMFilme().getFilmes().size();i++){
+                                                    if(principal.getEdicoes().get(selecionada).getMFilme().getFilmes().get(i).getNome().equals(nome_filme1)){
+                                                        existe_filme = true;
+                                                        indice_filme = i;
+                                                    }
+                                                    if(existe_filme){
+                                                        System.out.println("Qual a nova pontuação?");
+                                                        pontuacao6 = scan.nextDouble();
+                                                        principal.getEdicoes().get(selecionada).getMFilme().getFilmes().get(indice_filme).setPontos(pontuacao6);
+                                                        System.out.println("Pontuação atualizada!");
+                                                    }
+                                                        
+                                                }
+                                                
+                                            }
+                                        case 7:
+                                            System.out.println(principal.getEdicoes().get(selecionada).getMap());
+                                            break;
+                                        case 8:
+                                            running3=false;
+                                    }
+                                    }while(running3==true);
                                     
                                     
+                                    
+                                        
                                     
                                     break;
+                                    
+                                    
+                                    
+                                    
+                                    
                                     
 
                                 case 11:
                                     System.exit(0);
-                                            
+                                case 12:
+                                    System.out.println(principal.getEdicoes().get(selecionada).getMAtores());
+                                    
+                                    BubbleSort(principal.getEdicoes().get(selecionada).getMAtores().getAtores());
+                                    break;
                                 default:
                                     System.out.println("Opção inválida");       
                                     break;
@@ -1123,7 +1314,7 @@ public class Main {
         return novoator;
     }
     
-    public static double Pontuacao(EdicaoFestival f){
+    public static double Pontuacao(EdicaoFestival f){ // Gera um valor aleatório para cade perito e devolve a média do mesmo
         int pontos=0;
         double media;
         for(int i = 0; i< f.getPeritos().size();i++){
@@ -1133,32 +1324,22 @@ public class Main {
         return media;
     }
     
-   
+public static void BubbleSort(ArrayList<Ator> a){ //Organiza a lista com o algoritmo bubbleSort
+    Ator aux;
+    for (int i=0; i<a.size()-1;i++ ){
+        for (int j = 0; j<a.size()-i-1;j++){
+            if(a.get(j).getPontos()<a.get(j+1).getPontos()){
+                aux = a.get(j);
+                a.set(j, a.get(j+1));
+                a.set(j+1, aux);
+            }
+        }
+    }
+    for(int i =0; i<a.size();i++)
+       System.out.println((i+1)+"º Lugar: "+ a.get(i).getNome()+" com "+a.get(i).getPontos()+" pontos!");
+   }
 }
 
 
         
- /*System.out.println("Qual o nome do filme?");
-                                    nome_filme = scan.next();
-                                    for(int j=0; j<principal.getEdicoes().get(selecionada).getFilmes().size();j++){
-                                                if(principal.getEdicoes().get(selecionada).getFilmes().get(j).getNome().equals(nome_filme)){
-                                                    principal.getEdicoes().get(selecionada).getFilmes().get(j).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
-                                                    System.out.println(principal.getEdicoes().get(selecionada).getFilmes().get(j).MostraP());
-                                                }
-                                    }
-                                    break;*/       
-        
-        
   
-/*System.out.println("Qual o nome do ator ?");
-                                    nome_ator = scan.next();
-                                    System.out.println("Qual o sobrenome do ator?");
-                                    nome_ator = nome_ator + " "+ scan.next();
-                                    for(int i=0; i<principal.getEdicoes().get(selecionada).getAtores().size();i++){
-                                        if(principal.getEdicoes().get(selecionada).getAtores().get(i).getNome().equals(nome_ator)) {
-                                            principal.getEdicoes().get(selecionada).getAtores().get(i).setPontos(Pontuacao(principal.getEdicoes().get(selecionada)));
-                                            System.out.println(principal.getEdicoes().get(selecionada).getAtores().get(i).MostraP());
-                                        }
-                                        
-                                    }
-                                    break;*/
