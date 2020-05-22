@@ -25,7 +25,7 @@ public class Peritos {
     
     public int geraPontos(){
         Random rand = new Random();
-        int pontos = rand.nextInt(10)+1;
+        int pontos = rand.nextInt(10)+1; // A ponutação é um valor aleatório entre 1 e 10;
         return pontos;       
     }
     public String toString(){

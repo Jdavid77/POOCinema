@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
  * @author jdavi
  */
 public class EdicaoFestival {
-    
+    // Declaração das variáveis necessárias
     private int ano;
     private int numeroedicao;
     private ArrayList<Filme> filmes;
@@ -27,7 +27,8 @@ public class EdicaoFestival {
     private ArrayList<Filme> verificafilmes;
     private ArrayList<String> realizadores;
     private ArrayList<Ator> carreira;
-    // 
+    private ArrayList<String> aux ;
+     
     private LinkedHashMap<String,Double> map_realizadores; 
     private CategoriasAtor MAtores;
     private CategoriasAtor MAtrizes;
@@ -35,8 +36,12 @@ public class EdicaoFestival {
     private CategoriasAtor MSecundario;
     private CategoriasAtor PCarreira;
     private CategoriasFilme MFilme;
+    private CategoriasFilme MBandaSonora;
+    private CategoriasFilme MelhorCenarios;
+    private CategoriasFilme MelhorEfeitosVisuais;
+    private CategoriasFilme MelhorHistoria;
     
-    public EdicaoFestival(int ano, int numeroedicao){
+    public EdicaoFestival(int ano, int numeroedicao){// Iniciação das váriaveis, só é permitido criar edicção com o ano e o numero
         this.ano = ano;
         this.numeroedicao = numeroedicao;
         filmes = new ArrayList<Filme>();
@@ -48,9 +53,13 @@ public class EdicaoFestival {
         MSecundario = new CategoriasAtor("Melhor Ator/Atriz Secundária");
         PCarreira = new CategoriasAtor("Premio Carreira");
         MFilme = new CategoriasFilme("Melhor Filme");
+        MBandaSonora = new CategoriasFilme("Melhor Banda Sonora");
+        MelhorCenarios = new CategoriasFilme("Melhores Cenários");
+        MelhorEfeitosVisuais = new CategoriasFilme("Melhores efeitos visuais");
+        MelhorHistoria = new CategoriasFilme("Melhor história");
+        aux = new ArrayList<String>();
         
         // Para efeitos de verificação de atribuição de premios
-        
         masculinos = new ArrayList<Ator>();
         femininos = new ArrayList<Ator>();
         principais = new ArrayList<Ator>();
@@ -61,10 +70,9 @@ public class EdicaoFestival {
         carreira = new ArrayList<Ator>();
         map_realizadores = new LinkedHashMap<String,Double>();
         
-        //
     }
     
-    public String toString(){
+    public String toString(){// Função onde é impresso as informações sobre a edicão: Ano, n_edicao, e informações sobre os filmes
         String info;
         info = "Edição: "+numeroedicao+"\n";
         info = info + "Ano: "+ano+"\n";
@@ -74,16 +82,28 @@ public class EdicaoFestival {
         }
         return info;
     }
-    public void addFilme(Filme f){
-        filmes.add(f);
-    }
+    
+    //Funções getters
     public int getNumEdicao(){
         return numeroedicao;
     }
     public ArrayList<Filme> getFilmes(){
         return filmes;
     }
-    
+     
+    public CategoriasFilme getBandaSonora(){
+            return MBandaSonora;
+    }
+    public CategoriasFilme getMelhorHistoria(){
+            return MelhorHistoria;
+    }
+    public CategoriasFilme getMelhorEfeitosVisuais(){
+            return MelhorEfeitosVisuais;
+    }
+    public CategoriasFilme getMelhorCenarios(){
+            return MelhorCenarios;
+    }
+
     public ArrayList<Ator> getMasculinos(){
         return masculinos;
     }
@@ -135,22 +155,29 @@ public class EdicaoFestival {
     public CategoriasAtor getPCarreira(){
         return PCarreira;
     }
+    public LinkedHashMap<String,Double> getMap(){
+        return map_realizadores;
+    }
+    public ArrayList<String> getAux(){
+        return aux;
+    }
     
-    public void addAtor(Ator a){
-        atores.add(a);
-    }
-    public void addPerito(Peritos p){        
-        peritos.add(p);
-    }
     public ArrayList<Ator> getAtores(){
         return atores;    
     }
     public ArrayList<Peritos> getPeritos(){
         return peritos;
     }
-    public LinkedHashMap<String,Double> getMap(){
-        return map_realizadores;
+    
+    //Funções ADD
+    public void addAtor(Ator a){
+        atores.add(a);
     }
-   
+    public void addPerito(Peritos p){ 
+        peritos.add(p);
+    }
+   public void addFilme(Filme f){
+        filmes.add(f);
+    }
     
 }

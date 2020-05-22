@@ -30,14 +30,10 @@ public class CategoriasAtor {
         String info;
         info = "Categoria: "+nome+"\n";
         for (int i=0;i<atores.size();i++)
-            info = info + "Concorrente " + i+ ": "+atores.get(i).getNome()+"\n"+ "Pontuação: "+atores.get(i).getPontos()+"\n";            
+            info = info + "Concorrente " + i+ ": "+atores.get(i).getNome()+"\n"+ "Pontuação: "/*+atores.get(i).getPontos()+"\n"*/;            
         return info;
     }
-    
 }
-
-    
-    
     
    
         

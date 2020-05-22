@@ -31,7 +31,7 @@ public class CategoriasFilme {
         String info;
         info = "Categoria: "+nome+"\n";
         for (int i=0;i<filmes.size();i++)
-            info = info + "Filme; " + i+ ": "+filmes.get(i).getNome()+"\n"+ "Pontuação: "+filmes.get(i).getPontos()+"\n";            
+            info = info + "Filme; " + i+ ": "+filmes.get(i).getNome()+"\n"+ "Pontuação: "/*+filmes.get(i).getPontos()+"\n"*/;            
         return info;
     }
     
