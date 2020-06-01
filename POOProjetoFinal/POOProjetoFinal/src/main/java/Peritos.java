@@ -1,0 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Tiago Velosa
+ */
+import java.util.Random;
+public class Peritos {
+    private String nome;
+   
+    
+    public Peritos(String nome){
+        this.nome = nome;
+        
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public String getNome(){
+        return nome ;        
+    }
+    
+    public int geraPontos(){
+        Random rand = new Random();
+        int pontos = rand.nextInt(10)+1; // A pontuação é um valor aleatório entre 1 e 10;
+        return pontos;       
+    }
+    public String toString(){
+        String info ;
+        info = "Perito: " + nome ;
+        return info;
+    }
+    
+       
+}
+
